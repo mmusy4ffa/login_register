@@ -14,17 +14,22 @@ class RegisterPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //Icon Gambar
             Icon(
               Icons.person,
               size: 100,
               color: Colors.blue,
             ),
+
+            //Nama Lengkap
             TextField(
               decoration: InputDecoration(
                 labelText: 'Nama Lengkap',
                 border: OutlineInputBorder(),
               ),
             ),
+
+            //Inputan Email
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
@@ -32,27 +37,37 @@ class RegisterPage extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
+
+            // Inputan Password
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
+              //Untuk Meng-hide Password tidak berbentuk String
               obscureText: true,
             ),
+
+            //Konfirmasi Password
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Konfirmasi Password',
                 border: OutlineInputBorder(),
               ),
+              //Untuk Meng-hide Password tidak berbentuk String
               obscureText: true,
             ),
+
+            //Tombol Lanjut Page
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
               child: Text('Daftar'),
             ),
+
+            //Kembali ke Page Login
             TextButton(
               onPressed: () {
                 Navigator.pop(context);

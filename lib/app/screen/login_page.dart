@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
 
-            //Passowrd Form
+            //Password Form
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
@@ -36,11 +36,13 @@ class LoginPage extends StatelessWidget {
             // Login Button
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/HomePage');
+              },
               child: Text('Login'),
             ),
 
-            //Register Form 'Belum Punya Akun?'
+            //Register Form (Masuk Ke Page 2 untuk Daftar/Register)
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/Register');
