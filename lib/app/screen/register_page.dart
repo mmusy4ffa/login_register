@@ -73,6 +73,8 @@ class RegisterPage extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Password Tidak Boleh Kosong!';
+                  } else if (value.length != 8) {
+                    return 'Password Wajib 8 Karakter!';
                   }
                   return null;
                 },
