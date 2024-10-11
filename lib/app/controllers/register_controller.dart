@@ -1,5 +1,0 @@
-class RegisterController {
-  void register() {
-    
-  }
-}

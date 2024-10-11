@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: colorText, fontSize: 20),
             ),
             Text(
-              'Halo Musyaffa!',
+              'Hi Musyaffa!',
               style: TextStyle(color: colorText, fontSize: 15),
             ),
 
