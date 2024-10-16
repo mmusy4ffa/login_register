@@ -1,10 +1,41 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:login_register/app/controllers/validation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterUser extends StatefulWidget {
+  @override
+  State<RegisterUser> createState() => _RegisterUserState();
+}
+
+class _RegisterUserState extends State<RegisterUser> {
+  @override
   final _formState = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController namaController = TextEditingController();
+  final TextEditingController konfirmasiController = TextEditingController();
+
+//fungsi menyimpan data
+  Future<void> RegisterUser() async {
+    if (_formState.currentState!.validate()) {
+      final perfs = await SharedPreferences.getInstance();
+      await perfs.setString('nama', namaController.text);
+      await perfs.setString('email', emailController.text);
+      await perfs.setString('password', passwordController.text);
+
+      //tampilan jika berhasil
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Register Berhasil')));
+
+      //mengkosongkan jika sudah registrasi
+      namaController.clear();
+      emailController.clear();
+      passwordController.clear();
+      konfirmasiController.clear();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +65,13 @@ class RegisterPage extends StatelessWidget {
                   labelText: 'Nama Lengkap',
                   border: OutlineInputBorder(),
                 ),
+                controller: namaController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Nama Wajib di Isi!';
-                  } else if (value.length != 5) {
-                    return 'Karakter Wajib Lebih dari 4!';
+                    // } else if (value.length != 5) {
+                    //   return 'Karakter Wajib Lebih dari 4!';
+                    // }
                   }
                 },
               ),
@@ -73,8 +106,6 @@ class RegisterPage extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Password Tidak Boleh Kosong!';
-                  } else if (value.length != 8) {
-                    return 'Password Wajib 8 Karakter!';
                   }
                   return null;
                 },
@@ -86,14 +117,14 @@ class RegisterPage extends StatelessWidget {
               SizedBox(height: 20),
               TextFormField(
                 controller:
-                    passwordController, //Penghubung Password dengan Controllers
+                    konfirmasiController, //Penghubung Password dengan Controllers
                 decoration: InputDecoration(
                   labelText: 'Konfirmasi Password',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password Tidak Boleh Kosong!';
+                    return 'Password Harus Sama';
                   }
                   return null;
                 },
@@ -106,7 +137,7 @@ class RegisterPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (_formState.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/HomePage');
+                    Navigator.pop(context);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Silahkan Lengkapi Form')));

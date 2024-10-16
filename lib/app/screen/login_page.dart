@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:login_register/app/controllers/login_controller.dart';
 import 'package:login_register/app/controllers/validation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:login_register/app/controllers/validation.dart'
 
 class LoginPage extends StatelessWidget {
   final _formState = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  Future<String?> loginUser() async {
+    final perfs = await SharedPreferences.getInstance();
+    final SavedEmail = perfs.getString('Email');
+    final SavedPassword = perfs.getString('Password');
+
+    if (SavedEmail == null && SavedPassword == null) {
+      return 'Belum Terdaftar';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
