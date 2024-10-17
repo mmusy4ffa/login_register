@@ -1,22 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:login_register/app/controllers/login_controller.dart';
+import 'package:login_register/app/controllers/Database.dart';
 import 'package:login_register/app/controllers/validation.dart';
+import 'package:login_register/app/screen/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:login_register/app/controllers/validation.dart'
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _formState = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  Future<String?> loginUser() async {
-    final perfs = await SharedPreferences.getInstance();
-    final SavedEmail = perfs.getString('Email');
-    final SavedPassword = perfs.getString('Password');
+  Future<void> Login() async {
+    // final perfs = await SharedPreferences.getInstance();
+    // String? savedUsername = perfs.getString('username');
+    // String? savedPassword = perfs.getString('password');
 
-    if (SavedEmail == null && SavedPassword == null) {
-      return 'Belum Terdaftar';
+    String email = emailController.text;
+    String password = passwordController.text;
+    print(database);
+    for (var data in database) {
+      if (data.email == email && data.password == password) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage(model: data)));
+      }
     }
+
+    // if (username == savedUsername && password == savedPassword) {
+    //   ScaffoldMessenger.of(context)
+    //       .showSnackBar(SnackBar(content: Text('Register Berhasil')));
+    // } else {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text('Username atau Password Salah')));
+    // }
   }
 
   @override
@@ -65,7 +86,7 @@ class LoginPage extends StatelessWidget {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Password Tidak Boleh Kosong!';
-                  } else if (value.length != 8) {
+                  } else if (value.length < 8) {
                     return 'Password Wajib 8 Karakter!';
                   }
                   return null;
@@ -76,8 +97,9 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  print(_formState.currentState!.validate());
                   if (_formState.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/HomePage');
+                    Login();
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Mohon Periksa Inputan Anda!')));

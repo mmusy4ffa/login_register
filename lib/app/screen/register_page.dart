@@ -1,7 +1,9 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:login_register/app/controllers/Database.dart';
 import 'package:login_register/app/controllers/validation.dart';
+import 'package:login_register/app/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterUser extends StatefulWidget {
@@ -12,29 +14,29 @@ class RegisterUser extends StatefulWidget {
 class _RegisterUserState extends State<RegisterUser> {
   @override
   final _formState = GlobalKey<FormState>();
+  final TextEditingController namaController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController namaController = TextEditingController();
   final TextEditingController konfirmasiController = TextEditingController();
 
 //fungsi menyimpan data
-  Future<void> RegisterUser() async {
-    if (_formState.currentState!.validate()) {
-      final perfs = await SharedPreferences.getInstance();
-      await perfs.setString('nama', namaController.text);
-      await perfs.setString('email', emailController.text);
-      await perfs.setString('password', passwordController.text);
+  Future<void> Register() async {
+    // final perfs = await SharedPreferences.getInstance();
+    String username = namaController.text;
+    String email = emailController.text;
+    String password = passwordController.text;
+    String konfirmasi = konfirmasiController.text;
 
-      //tampilan jika berhasil
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Register Berhasil')));
-
-      //mengkosongkan jika sudah registrasi
-      namaController.clear();
-      emailController.clear();
-      passwordController.clear();
-      konfirmasiController.clear();
+    database
+        .add(UserModel(username: username, email: email, password: password));
+    for (var data in database) {
+      print(data.email);
+      print(data.password);
+      print(data.username);
     }
+
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Register Berhasil')));
   }
 
   @override
@@ -137,7 +139,8 @@ class _RegisterUserState extends State<RegisterUser> {
               ElevatedButton(
                 onPressed: () {
                   if (_formState.currentState!.validate()) {
-                    Navigator.pop(context);
+                    Register();
+                    Navigator.pushNamed(context, '/');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Silahkan Lengkapi Form')));

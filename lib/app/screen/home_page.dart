@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:login_register/app/models/user_model.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  UserModel model;
+  HomePage({super.key, required this.model});
 
   dynamic colorText = Colors.white;
 
@@ -18,7 +23,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(color: colorText, fontSize: 20),
             ),
             Text(
-              'Hi Musyaffa!',
+              model.username,
               style: TextStyle(color: colorText, fontSize: 15),
             ),
 
@@ -28,7 +33,10 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context, '/HomePage');
+                // Navigator.pop(context, '/HomePage');
+                if (Platform.isAndroid) {
+                  SystemNavigator.pop();
+                }
               },
               child: Text(
                 'Keluar',
