@@ -44,7 +44,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text(
+          'Login',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
@@ -56,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.person, size: 100, color: Colors.blue),
+
               //Email Form
               SizedBox(height: 20),
               TextFormField(
@@ -95,17 +99,29 @@ class _LoginPageState extends State<LoginPage> {
 
               // Login Button
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  print(_formState.currentState!.validate());
-                  if (_formState.currentState!.validate()) {
-                    Login();
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Mohon Periksa Inputan Anda!')));
-                  }
-                },
-                child: Text('Login'),
+              Container(
+                width: 450,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Colors.blue.shade500, Colors.indigo.shade900]),
+                    borderRadius: BorderRadius.circular(10)),
+                child: ElevatedButton(
+                  onPressed: () {
+                    print(_formState.currentState!.validate());
+                    if (_formState.currentState!.validate()) {
+                      Login();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Mohon Periksa Inputan Anda!')));
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      foregroundColor: Colors.white),
+                  child: Text('Login'),
+                ),
               ),
 
               //Register Form (Masuk Ke Page 2 untuk Daftar/Register)

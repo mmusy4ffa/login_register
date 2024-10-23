@@ -43,7 +43,10 @@ class _RegisterUserState extends State<RegisterUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar'),
+        title: Text(
+          'Daftar',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
@@ -136,17 +139,29 @@ class _RegisterUserState extends State<RegisterUser> {
 
               //Tombol Lanjut Page
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formState.currentState!.validate()) {
-                    Register();
-                    Navigator.pushNamed(context, '/');
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Silahkan Lengkapi Form')));
-                  }
-                },
-                child: Text('Daftar'),
+              Container(
+                width: 450,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Colors.blue.shade500, Colors.indigo.shade900]),
+                    borderRadius: BorderRadius.circular(10)),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formState.currentState!.validate()) {
+                      Register();
+                      Navigator.pushNamed(context, '/');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Silahkan Lengkapi Form')));
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.white,
+                    shadowColor: Colors.transparent,
+                  ),
+                  child: Text('Daftar'),
+                ),
               ),
 
               //Kembali ke Page Login
