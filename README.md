@@ -1,16 +1,19 @@
-# login_register
+Ujian Tengah Semester
 
-A new Flutter project.
+1. Halaman Login
+![Halaman Login](image.png)
 
-## Getting Started
+2. Jika Email form atau password = null 
+![Null](image-1.png)
 
-This project is a starting point for a Flutter application.
+3. Halaman Registrasi
+![Regist](image-2.png)
 
-A few resources to get you started if this is your first Flutter project:
+4. Jika Form tidak terisi
+![Regist Null](image-3.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+5. Memvalidai Email atau bukan, jika tidak akan muncul tulisan "Tidak Valid"
+![Validasi](image-4.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+6. Hasil Ketika sudah melakukan registrasi dan login
+![Hasil](image-5.png)
