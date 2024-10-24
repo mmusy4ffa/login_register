@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:login_register/app/controllers/Database.dart';
@@ -7,6 +6,8 @@ import 'package:login_register/app/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterUser extends StatefulWidget {
+  const RegisterUser({super.key});
+
   @override
   State<RegisterUser> createState() => _RegisterUserState();
 }
@@ -36,7 +37,7 @@ class _RegisterUserState extends State<RegisterUser> {
     }
 
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Register Berhasil')));
+        .showSnackBar(const SnackBar(content: Text('Register Berhasil')));
   }
 
   @override
@@ -46,16 +47,16 @@ class _RegisterUserState extends State<RegisterUser> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.blue.shade500, Colors.indigo.shade900])),
+                colors: [Colors.orange.shade400, Colors.orange.shade900])),
         child: Form(
           key: _formState, //Koneksi ke GlobalKey
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 25.0),
                 child: Text(
                   'Daftar',
@@ -65,7 +66,7 @@ class _RegisterUserState extends State<RegisterUser> {
                       fontSize: 40),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 25.0),
                 child: Text(
                   'Silahkan Mengisi Form',
@@ -73,12 +74,27 @@ class _RegisterUserState extends State<RegisterUser> {
                 ),
               ),
 
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 50,
               ),
-              //Nama Lengkap
+
+                Expanded(child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(40))
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 200,),
+
+
+
+                      //Nama Lengkap
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nama Lengkap',
                   border: OutlineInputBorder(),
                 ),
@@ -90,14 +106,15 @@ class _RegisterUserState extends State<RegisterUser> {
                     //   return 'Karakter Wajib Lebih dari 4!';
                     // }
                   }
+                  return null;
                 },
               ),
 
               //Inputan Email
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: emailController, //Penghubung Controller
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
@@ -112,11 +129,11 @@ class _RegisterUserState extends State<RegisterUser> {
               ),
 
               // Inputan Password
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller:
                     passwordController, //Penghubung Password dengan Controller
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
@@ -131,11 +148,11 @@ class _RegisterUserState extends State<RegisterUser> {
               ),
 
               //Konfirmasi Password
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller:
                     konfirmasiController, //Penghubung Password dengan Controllers
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Konfirmasi Password',
                   border: OutlineInputBorder(),
                 ),
@@ -150,12 +167,12 @@ class _RegisterUserState extends State<RegisterUser> {
               ),
 
               //Tombol Lanjut Page
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
-                width: 450,
+                width: double.infinity,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: [Colors.blue.shade500, Colors.indigo.shade900]),
+                        colors: [Colors.orange.shade200, Colors.orange.shade900]),
                     borderRadius: BorderRadius.circular(10)),
                 child: ElevatedButton(
                   onPressed: () {
@@ -164,7 +181,7 @@ class _RegisterUserState extends State<RegisterUser> {
                       Navigator.pushNamed(context, '/');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Silahkan Lengkapi Form')));
+                          const SnackBar(content: Text('Silahkan Lengkapi Form')));
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -172,21 +189,33 @@ class _RegisterUserState extends State<RegisterUser> {
                     foregroundColor: Colors.white,
                     shadowColor: Colors.transparent,
                   ),
-                  child: Text('Daftar'),
+                  child: const Text('Daftar'),
                 ),
               ),
 
               //Kembali ke Page Login
+              const SizedBox(height: 15,),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Sudah punya akun? Login'),
+                
+                child: const Center(
+                  child: 
+                 Text('Sudah punya akun? Login'),
+              ),
               ),
             ],
           ),
         ),
       ),
+                    ],
+                  ),
+                )),
+                
+
+
+              
     );
   }
 }

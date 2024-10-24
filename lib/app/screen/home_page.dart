@@ -18,15 +18,15 @@ class HomePage extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-            Colors.blue.shade700,
-            Colors.indigo.shade700,
+            Colors.orange.shade200,
+            Colors.orange.shade700,
           ]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Selamat Datang di Halaman Utama',
+              'Selamat Datang',
               style: TextStyle(color: colorText, fontSize: 20),
             ),
             Text(
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
             ),
 
             //Tombol Keluar
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                   SystemNavigator.pop();
                 }
               },
-              child: Text(
+              child: const Text(
                 'Keluar',
                 style: TextStyle(color: Colors.blue),
               ),

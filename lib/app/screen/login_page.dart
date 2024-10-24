@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:login_register/app/controllers/validation.dart'
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -47,16 +49,16 @@ class _LoginPageState extends State<LoginPage> {
           width: double.infinity,
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Colors.blue.shade500, Colors.indigo.shade900])),
+                  colors: [Colors.orange.shade200, Colors.orange.shade700])),
           child: Form(
             key: _formState, //Agar terhubung ke GlobalKey
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 25.0),
                   child: Text(
                     'Login',
@@ -67,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 25.0),
                   child: Text(
                     'Selamat Datang',
@@ -77,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 // Align(
@@ -87,8 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(60),
@@ -96,12 +98,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 100),
+                        const SizedBox(height: 100),
 
                         //Email
                         TextFormField(
                           controller: emailController, // Penghubung Controller
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Email',
                             border: OutlineInputBorder(),
                           ),
@@ -115,9 +117,9 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                         //Password Form
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Password',
                             border: OutlineInputBorder(),
                           ),
@@ -134,13 +136,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         // Login Button
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
-                          width: 450,
+                          width: double.infinity,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                Colors.blue.shade500,
-                                Colors.indigo.shade900
+                                Colors.orange.shade500,
+                                Colors.pink.shade900
                               ]),
                               borderRadius: BorderRadius.circular(10)),
                           child: ElevatedButton(
@@ -150,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Login();
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                         content: Text(
                                             'Mohon Periksa Inputan Anda!')));
                               }
@@ -158,9 +160,9 @@ class _LoginPageState extends State<LoginPage> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent,
-                                padding: EdgeInsets.symmetric(vertical: 15.0),
+                                padding: const EdgeInsets.symmetric(vertical: 15.0),
                                 foregroundColor: Colors.white),
-                            child: Text(
+                            child: const Text(
                               'Login',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
@@ -168,11 +170,14 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         //Register Form (Masuk Ke Page 2 untuk Daftar/Register)
+                        const SizedBox(height: 20,),
                         TextButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/Register');
                             },
-                            child: Text('Belum Punya Akun?'))
+                            child: const Center(
+                              child: Text('Belum Punya Akun?')),
+                            ), 
                       ],
                     ),
                   ),
