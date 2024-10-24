@@ -42,28 +42,40 @@ class _RegisterUserState extends State<RegisterUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Daftar',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.blue.shade500, Colors.indigo.shade900])),
         child: Form(
           key: _formState, //Koneksi ke GlobalKey
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //Icon Gambar
-              Icon(
-                Icons.person,
-                size: 100,
-                color: Colors.blue,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: 80,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 25.0),
+                child: Text(
+                  'Daftar',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 25.0),
+                child: Text(
+                  'Silahkan Mengisi Form',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
               ),
 
+              SizedBox(
+                height: 20,
+              ),
               //Nama Lengkap
               TextFormField(
                 decoration: InputDecoration(
